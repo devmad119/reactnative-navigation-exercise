@@ -2,5 +2,6 @@
 First React Native Project for exercising the navigation
 
 run command:
-npm start
+<br/>
+npm startbr/>
 npm run android
