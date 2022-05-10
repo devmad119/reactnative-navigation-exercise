@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { Button, View, TextInput, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {Button, View, TextInput} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const AuthContext = React.createContext();
 const Stack = createNativeStackNavigator();
@@ -11,7 +11,7 @@ function SignInScreen() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const { signIn } = React.useContext(AuthContext);
+  const {signIn} = React.useContext(AuthContext);
 
   return (
     <View>
@@ -26,14 +26,14 @@ function SignInScreen() {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Sign in" onPress={() => signIn({ username, password })} />
+      <Button title="Sign in" onPress={() => signIn({username, password})} />
     </View>
   );
 }
 
-function HomeScreen({ navigation }) {
+function HomeScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button
         onPress={() => navigation.navigate('Notifications')}
         title="Go to notifications"
@@ -42,8 +42,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-
-export default function App({ navigation }) {
+export default function App({navigation}) {
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -71,7 +70,7 @@ export default function App({ navigation }) {
       isLoading: true,
       isSignout: false,
       userToken: null,
-    }
+    },
   );
 
   React.useEffect(() => {
@@ -88,7 +87,7 @@ export default function App({ navigation }) {
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+      dispatch({type: 'RESTORE_TOKEN', token: userToken});
     };
 
     bootstrapAsync();
@@ -102,19 +101,19 @@ export default function App({ navigation }) {
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      signOut: () => dispatch({type: 'SIGN_OUT'}),
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
       },
     }),
-    []
+    [],
   );
 
   return (
