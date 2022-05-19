@@ -91,6 +91,10 @@ export default function App({}) {
     };
 
     bootstrapAsync();
+
+    return (cleanUp = () => {
+      // It is called when App component is unmounted.
+    });
   }, []);
 
   const authContext = React.useMemo(
